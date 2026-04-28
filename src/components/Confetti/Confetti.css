@@ -1,0 +1,21 @@
+.confetti-piece {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  border-radius: 2px;
+  animation: confettiFloat 4s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes confettiFloat {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}

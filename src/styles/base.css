@@ -1,0 +1,95 @@
+@import url('[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka+One&family=Baloo+2:wght@400;500;600;700;800&display=swap)');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+/* SECTION HEADER */
+.section-header {
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.section-header.center {
+  text-align: center;
+}
+
+.section-tag {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: var(--accent-pink);
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-family: 'Baloo 2', cursive;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.section-line {
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-sunset), var(--accent-pink));
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  color: var(--text-soft);
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+  padding: 14px 32px;
+  border-radius: 60px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-sunset), var(--accent-pink));
+  color: white;
+  box-shadow: 0 10px 25px rgba(255,107,157,0.3);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--accent-pink);
+  border: 2px solid var(--accent-pink);
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+}

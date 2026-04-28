@@ -1,0 +1,61 @@
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);
+  z-index: 1000;
+  animation: fadeOut 0.5s ease forwards;
+  animation-delay: 3.5s;
+}
+
+.splash-content {
+  text-align: center;
+}
+
+.countdown-number {
+  font-size: 15vw;
+  font-weight: 800;
+  font-family: 'Fredoka One', cursive;
+  background: linear-gradient(135deg, #FFB347, #FF6B9D, #6C5CE7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: countdownPop 1s ease-out forwards;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.countdown-number.go {
+  font-size: 10vw;
+  animation: countdownGo 0.8s ease-out forwards;
+}
+
+.countdown-text {
+  font-size: 1.2rem;
+  color: white;
+  margin-top: 20px;
+  font-weight: 500;
+  animation: fadeInOut 0.5s ease infinite;
+}
+
+@keyframes countdownPop {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes countdownGo {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
