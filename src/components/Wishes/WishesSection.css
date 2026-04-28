@@ -1,61 +1,136 @@
 .wishes-section {
-  padding: 80px 0;
-  background: rgba(255,255,255,0.4);
+  padding: 120px 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  perspective: 1500px;
+  overflow: hidden;
 }
 
-.wishes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+.wishes-header {
+  text-align: center;
+  margin-bottom: 80px;
 }
 
-.wish-card {
-  background: white;
-  border-radius: 30px;
-  padding: 35px 30px;
-  border-top: 5px solid;
+.wishes-header .section-tag,
+.wishes-header .wishes-title {
+  opacity: 0; /* Handled by GSAP */
+}
+
+.wishes-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
   position: relative;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.wish-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.wish-number {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: rgba(0,0,0,0.05);
+/* The vertical connecting magical line */
+.wishes-showcase::before {
+  content: '';
   position: absolute;
-  top: 20px;
-  right: 25px;
+  top: 0; bottom: 0; left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--accent-pink), var(--accent-purple), transparent);
+  transform: translateX(-50%);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.premium-wish-card {
+  width: 85%;
+  position: relative;
+  border-radius: 40px;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+  z-index: 1;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  opacity: 0; /* GSAP start state */
+}
+
+/* Alternating Layout */
+.align-left { align-self: flex-start; }
+.align-right { align-self: flex-end; text-align: right; }
+
+/* The colored glowing orb inside the card */
+.wish-glow-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 40px;
+  background: radial-gradient(circle at center, var(--card-color) 0%, transparent 70%);
+  opacity: 0.05;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 0;
+}
+
+.premium-wish-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.06), 0 10px 30px var(--card-color);
+}
+
+.premium-wish-card:hover .wish-glow-bg {
+  opacity: 0.15;
+  transform: scale(1.1);
+}
+
+.wish-content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.align-right .wish-content-wrapper {
+  flex-direction: row-reverse;
+}
+
+/* Massive overlapping translucent number */
+.huge-bg-number {
   font-family: 'Fredoka One', cursive;
+  font-size: 8rem;
+  line-height: 0.8;
+  color: var(--card-color);
+  opacity: 0.15;
+  position: absolute;
+  top: -20px;
+  transition: all 0.4s ease;
 }
 
-.wish-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: var(--text-dark);
+.align-left .huge-bg-number { right: 20px; }
+.align-right .huge-bg-number { left: 20px; }
+
+.premium-wish-card:hover .huge-bg-number {
+  transform: scale(1.1) rotate(5deg);
+  opacity: 0.25;
+}
+
+.wish-text-content {
+  position: relative;
+  z-index: 3;
+}
+
+.wish-text-content h3 {
   font-family: 'Baloo 2', cursive;
+  font-size: 2.2rem;
+  color: var(--text-dark);
+  margin-bottom: 15px;
 }
 
-.wish-card p {
+.wish-text-content p {
+  font-size: 1.15rem;
   color: var(--text-soft);
-  line-height: 1.6;
+  line-height: 1.8;
+  max-width: 90%;
 }
 
-.wish-decoration {
-  margin-top: 20px;
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent-sunset), var(--accent-pink));
-  border-radius: 2px;
+.align-right .wish-text-content p {
+  margin-left: auto; /* keeps text block aligned right */
 }
 
-@media (max-width: 768px) {
-  .wish-number {
-    font-size: 2.5rem;
-  }
+@media (max-width: 900px) {
+  .wishes-showcase::before { left: 20px; }
+  .premium-wish-card { width: 100%; padding: 40px 30px; text-align: left; }
+  .align-right { align-self: flex-start; text-align: left; }
+  .align-right .wish-content-wrapper { flex-direction: row; }
+  .huge-bg-number { font-size: 6rem; top: 10px; right: 20px !important; left: auto !important; }
 }

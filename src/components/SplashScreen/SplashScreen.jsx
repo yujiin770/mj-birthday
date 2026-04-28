@@ -7,6 +7,7 @@ import goSound from '/sounds/go.mp3';
 
 function SplashScreen({ onComplete }) {
   const [countdownValue, setCountdownValue] = useState(3);
+  const [isOpening, setIsOpening] = useState(false);
 
   useEffect(() => {
     let current = 3;
@@ -34,27 +35,39 @@ function SplashScreen({ onComplete }) {
 
       if (current <= 0) {
         clearInterval(countdownInterval);
-        setTimeout(onComplete, 1000); // wait 1 s after GO!
+        
+        // Wait 1.5 seconds for "GO!" to show, then open curtains
+        setTimeout(() => {
+          setIsOpening(true);
+          
+          // Wait 1 second for the curtain animation to finish before proceeding
+          setTimeout(onComplete, 1000); 
+        }, 1500); 
       }
-    }, 3000); // each number lasts 3 s
+    }, 3000); // each number lasts 3s
 
     return () => clearInterval(countdownInterval);
   }, [onComplete]);
 
   return (
-    <div className="splash-screen animate-in">
-      <div className="splash-content">
-        {countdownValue > 0 ? (
-          <>
-            <div className="countdown-number fade-scale">{countdownValue}</div>
-            <p className="countdown-text">Get ready...</p>
-          </>
-        ) : (
-          <>
-            <div className="countdown-number go fade-scale">GO!</div>
-            <p className="countdown-text">Here we go!</p>
-          </>
-        )}
+    <div className={`splash-screen ${isOpening ? 'curtain-opening' : ''}`}>
+      {/* Split background curtains */}
+      <div className="curtain curtain-left" />
+      <div className="curtain curtain-right" />
+      
+      <div className={`splash-content ${isOpening ? 'fade-out' : ''}`}>
+        <div 
+          key={countdownValue} 
+          className={`countdown-number drape-animation ${countdownValue === 0 ? 'go' : ''}`}
+        >
+          {countdownValue > 0 ? countdownValue : 'GO!'}
+        </div>
+        <p 
+          key={`text-${countdownValue}`} 
+          className="countdown-text drape-text-animation"
+        >
+          {countdownValue > 0 ? 'Get ready...' : 'Here we go!'}
+        </p>
       </div>
     </div>
   );
