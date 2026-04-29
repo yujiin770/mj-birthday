@@ -58,7 +58,6 @@ export function useGsapAnimations(appRef, isReady) {
         // 2. HERO EXIT PARALLAX (Bug Fixed!)
         // ==========================================
         // We animate the WRAPPER instead of individual items. 
-        // Using fromTo ensures GSAP perfectly resets it when scrolling back up!
         gsap.fromTo('.hero-content-wrapper',
           { y: 0, opacity: 1, scale: 1 },
           {
@@ -109,21 +108,22 @@ export function useGsapAnimations(appRef, isReady) {
             }
           );
         });
+
         // ==========================================
         // 4. OTHER SECTIONS SCROLL TRIGGERS
         // ==========================================
 
-        // ✨ RARE: 3D Cinematic Billboard Flip Entrance ✨
+        //  3D Cinematic Billboard Flip Entrance 
         gsap.utils.toArray('.carousel-row').forEach((row, i) => {
           gsap.fromTo(row,
             {
               opacity: 0,
-              rotateX: -80, // Flipped completely backward
-              z: -800,      // Pushed deep into the background
-              y: 200,       // Dropped down slightly
+              rotateX: -80,
+              z: -800,
+              y: 200,
               scale: 0.8,
-              transformOrigin: "50% 50% -200px", // Rotates around a deep 3D pivot
-              filter: "blur(20px)" // Camera focus-pull effect
+              transformOrigin: "50% 50% -200px",
+              filter: "blur(20px)"
             },
             {
               opacity: 1,
@@ -133,27 +133,95 @@ export function useGsapAnimations(appRef, isReady) {
               scale: 1,
               filter: "blur(0px)",
               duration: 1.5,
-              delay: i * 0.2, // Row 1 drops in, then Row 2, then Row 3
+              delay: i * 0.2,
               ease: "expo.out",
               scrollTrigger: {
                 trigger: '.gallery-section',
                 start: 'top 75%',
-                // 'play' on scroll down, 'reverse' beautifully on scroll up!
                 toggleActions: 'play none none reverse'
               }
             }
           );
         });
 
-        gsap.utils.toArray('.memory-pill').forEach((pill, i) => {
-          gsap.fromTo(pill,
-            { x: i % 2 === 0 ? -80 : 80, opacity: 0 },
-            {
-              x: 0, opacity: 1, duration: 0.6, delay: i * 0.1, ease: 'power2.out',
-              scrollTrigger: { trigger: '.memories-section', start: 'top 80%', toggleActions: 'play none none reverse' }
-            }
-          );
+        // ==========================================
+        //  CAKE BUILD ENTRANCE & PARALLAX EXIT
+        // ==========================================
+
+        // 1. Entrance: The Cake builds itself!
+        const cakeTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.memories-section',
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          }
         });
+
+        cakeTl
+          .fromTo('.cake-header',
+            { y: -30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
+          )
+          .fromTo('.cake-wrapper',
+            { opacity: 0 },
+            { opacity: 1, duration: 0.1 },
+            "-=0.5"
+          )
+          // Plate slides in
+          .fromTo('.svg-plate',
+            { y: 50, opacity: 0, scale: 0.5 },
+            { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.2)' }
+          )
+          // Bottom tier drops
+          .fromTo('.svg-bottom-tier',
+            { y: -150, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: 'bounce.out' },
+            "-=0.2"
+          )
+          //  Middle tier drops 
+          .fromTo('.svg-middle-tier',
+            { y: -150, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: 'bounce.out' },
+            "-=0.4"
+          )
+          // Top tier drops
+          .fromTo('.svg-top-tier',
+            { y: -150, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: 'bounce.out' },
+            "-=0.4"
+          )
+          // Candle pops up
+          .fromTo('.svg-candle',
+            { scaleY: 0, transformOrigin: '50% 100%' },
+            { scaleY: 1, duration: 0.5, ease: 'back.out(1.5)' },
+            "-=0.2"
+          )
+          // Flame ignites!
+          .fromTo('.candle-flame',
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.4, ease: 'elastic.out(1, 0.5)' }
+          )
+          // Button pops in
+          .fromTo('.cake-controls',
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
+          );
+
+        // 2. Exit: Parallax scroll out
+        gsap.to('.cake-wrapper', {
+          y: -150,
+          opacity: 0,
+          scrollTrigger: {
+            trigger: '.memories-section',
+            start: 'center top',
+            end: 'bottom top',
+            scrub: 1
+          }
+        });
+
+        // ==========================================
+        // 5. PROMISE & CLOSING SECTIONS
+        // ==========================================
 
         const pinTimeline = gsap.timeline({ scrollTrigger: { trigger: '.promise-section', start: 'top 80%', end: 'bottom bottom', scrub: 1 } });
         pinTimeline
