@@ -46,7 +46,10 @@
 }
 
 /* Pause the scrolling if user hovers or taps a row */
-.carousel-track:hover { animation-play-state: paused; }
+.carousel-track:hover,
+.carousel-track:active { 
+  animation-play-state: paused; 
+}
 
 @keyframes scrollLeft {
   0% { transform: translateX(0); }
@@ -88,8 +91,9 @@
   background: #000;
 }
 
-/* The Magic Tilt! */
-.animated-3d-card:hover .card-wrapper {
+/* The Magic Tilt! (Added :active for iPad taps) */
+.animated-3d-card:hover .card-wrapper,
+.animated-3d-card:active .card-wrapper {
   transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
   box-shadow: 0px 35px 32px -8px rgba(0,0,0,0.4);
 }
@@ -104,7 +108,8 @@
 }
 
 /* Darkens the background slightly so the pop-out image looks brighter */
-.animated-3d-card:hover .cover-image {
+.animated-3d-card:hover .cover-image,
+.animated-3d-card:active .cover-image {
   opacity: 0.4; 
   transform: scale(1.1); /* Slight zoom for dramatic effect */
 }
@@ -132,7 +137,8 @@
 }
 
 /* Title lifts up and out */
-.animated-3d-card:hover .card-title-wrapper {
+.animated-3d-card:hover .card-title-wrapper,
+.animated-3d-card:active .card-title-wrapper {
   transform: translate3d(0%, -20px, 100px);
 }
 
@@ -142,7 +148,8 @@
   height: 120%; /* Taller so it breaks out of the top */
   position: absolute;
   bottom: 0;
-  z-index: 1;
+  left: -10%; /* 👇 MATHEMATICALLY PERFECT CENTERING FOR 120% WIDTH 👇 */
+  z-index: 10;
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
   object-fit: contain; /* PERFECT for transparent PNGs */
@@ -153,15 +160,16 @@
   filter: drop-shadow(0px 20px 15px rgba(0,0,0,0.4));
 }
 
-/* The Magic Pop Out! */
-.animated-3d-card:hover .character-image {
+/* The Magic Pop Out! (Added :active for perfect iPad tapping) */
+.animated-3d-card:hover .character-image,
+.animated-3d-card:active .character-image {
   opacity: 1;
   /* Flies up (-40px) and massively forwards towards the user (150px) */
   transform: translate3d(0%, -40px, 150px);
 }
 
-/* Responsive Sizing for Mobile */
-@media (max-width: 768px) {
+/* Responsive Sizing for Mobile & iPads */
+@media (max-width: 900px) {
   .animated-3d-card {
     width: 260px;
     height: 360px;
