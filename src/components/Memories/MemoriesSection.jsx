@@ -122,8 +122,17 @@ function MemoriesSection() {
               <div className="success-message">
                 <h3>Yay! 🎈</h3>
                 <p>Your wish is flying to the stars!</p>
-                <button className="btn-secondary mt-3" onClick={() => setPhase('idle')}>
-                  Make another wish
+                {/* 👇 THIS IS THE BUTTON - CHANGED TO "Watch this!!" 👇 */}
+                <button 
+                  className="btn-secondary mt-3" 
+                  onClick={() => {
+                    setPhase('idle');
+                    // Trigger the video modal
+                    const videoEvent = new CustomEvent('openSurpriseVideo');
+                    window.dispatchEvent(videoEvent);
+                  }}
+                >
+                  🎬 Watch this!! 🎬
                 </button>
               </div>
             )}

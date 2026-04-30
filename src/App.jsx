@@ -9,8 +9,10 @@ import GallerySection from './components/Gallery/GallerySection';
 import MemoriesSection from './components/Memories/MemoriesSection';
 import PromiseSection from './components/Promise/PromiseSection';
 import ClosingSection from './components/Closing/ClosingSection';
+import SurpriseSection from './components/Surprise/SurpriseSection';
 
 import './App.css';
+import surpriseVideo from './assets/videos/surprise.mp4';
 
 function App() {
   const appRef = useRef(null);
@@ -37,6 +39,7 @@ function App() {
         <PromiseSection />
         <ClosingSection />
       </main>
+      <SurpriseSection videoSrc={surpriseVideo} />
     </div>
   );
 }
