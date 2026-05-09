@@ -1,8 +1,36 @@
+import { useEffect, useRef } from 'react';
 import './ClosingSection.css';
 
-function ClosingSection() {
+function ClosingSection({ onReachEnd }) {
+  const sectionRef = useRef(null);
+  const triggeredRef = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5 && !triggeredRef.current) {
+            triggeredRef.current = true;
+            onReachEnd?.();
+          }
+        });
+      },
+      { threshold: 0.5, rootMargin: '0px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [onReachEnd]);
+
   return (
-    <section className="closing-section" id="closing">
+    <section className="closing-section" id="closing" ref={sectionRef}>
       <div className="container">
         <div className="closing-card">
           <div className="closing-header" />

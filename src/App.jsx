@@ -10,6 +10,7 @@ import MemoriesSection from './components/Memories/MemoriesSection';
 import PromiseSection from './components/Promise/PromiseSection';
 import ClosingSection from './components/Closing/ClosingSection';
 import SurpriseSection from './components/Surprise/SurpriseSection';
+import BirthdayPopup from './components/BirthdayPopup/BirthdayPopup';
 
 import './App.css';
 import surpriseVideo from './assets/videos/surprise.mp4';
@@ -17,9 +18,18 @@ import surpriseVideo from './assets/videos/surprise.mp4';
 function App() {
   const appRef = useRef(null);
   const [showSplash, setShowSplash] = useState(true);
+  const [showBirthdayPopup, setShowBirthdayPopup] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
+  }, []);
+
+  const handleClosingReachEnd = useCallback(() => {
+    setShowBirthdayPopup(true);
+  }, []);
+
+  const handleClosePopup = useCallback(() => {
+    setShowBirthdayPopup(false);
   }, []);
 
   useGsapAnimations(appRef, !showSplash);
@@ -37,9 +47,10 @@ function App() {
         <GallerySection />
         <MemoriesSection />
         <PromiseSection />
-        <ClosingSection />
+        <ClosingSection onReachEnd={handleClosingReachEnd} />
       </main>
       <SurpriseSection videoSrc={surpriseVideo} />
+      <BirthdayPopup isOpen={showBirthdayPopup} onClose={handleClosePopup} />
     </div>
   );
 }
