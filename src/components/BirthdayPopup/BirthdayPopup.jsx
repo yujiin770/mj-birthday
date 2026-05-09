@@ -1,8 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import './BirthdayPopup.css';
 
-// Import your Happy Birthday MP3
-// Make sure to place your MP3 file in src/assets/audio/happy-birthday.mp3
+
 import happyBirthdayMusic from '../../assets/audio/happy-birthday.mp3';
 
 function BirthdayPopup({ isOpen, onClose }) {
@@ -206,13 +205,7 @@ function BirthdayPopup({ isOpen, onClose }) {
 
   return (
     <div className="birthday-fullscreen-overlay">
-      {/* Music Control Button */}
-      {isMuted && (
-        <button className="music-control-btn" onClick={handleUnmute}>
-          🔇 Click to Unmute Music 🎵
-        </button>
-      )}
-      
+
       {/* Balloons & Image Cards Container */}
       <div className="floating-container" ref={balloonContainerRef} />
       
