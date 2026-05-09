@@ -205,7 +205,13 @@ function BirthdayPopup({ isOpen, onClose }) {
 
   return (
     <div className="birthday-fullscreen-overlay">
-
+      {/* Music Control Button */}
+      {isMuted && (
+        <button className="music-control-btn" onClick={handleUnmute}>
+       
+        </button>
+      )}
+      
       {/* Balloons & Image Cards Container */}
       <div className="floating-container" ref={balloonContainerRef} />
       
