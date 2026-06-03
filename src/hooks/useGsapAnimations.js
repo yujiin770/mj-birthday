@@ -109,6 +109,8 @@ export function useGsapAnimations(appRef, isReady) {
           );
         });
 
+        
+
         // ==========================================
         // 4. OTHER SECTIONS SCROLL TRIGGERS
         // ==========================================
@@ -219,23 +221,36 @@ export function useGsapAnimations(appRef, isReady) {
           }
         });
 
-        // ==========================================
-        // 5. PROMISE & CLOSING SECTIONS
-        // ==========================================
-
-        const pinTimeline = gsap.timeline({ scrollTrigger: { trigger: '.promise-section', start: 'top 80%', end: 'bottom bottom', scrub: 1 } });
-        pinTimeline
-          .fromTo('.promise-crown', { scale: 0, rotation: -360, y: -100 }, { scale: 1, rotation: 0, y: 0, duration: 1 })
-          .fromTo('.promise-content h2', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1 }, '-=0.5')
-          .fromTo('.promise-content p', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 1 }, '-=0.5');
-
-        gsap.fromTo('.closing-card',
-          { y: 100, opacity: 0, scale: 0.9 },
-          {
-            y: 0, opacity: 1, scale: 1, duration: 1, ease: 'elastic.out(1, 0.6)',
-            scrollTrigger: { trigger: '.closing-section', start: 'top 80%', toggleActions: 'play none none reverse' }
+        // Promise Section Magic Entrance
+        const promiseTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.promise-section',
+            start: 'top 70%',
+            toggleActions: 'play none none reverse'
           }
-        );
+        });
+
+        promiseTl
+          .from('.promise-visual', {
+            scale: 0,
+            rotate: -45,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'back.out(1.7)'
+          })
+          .from('.promise-text-card', {
+            x: 100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+          }, "-=0.8")
+          .from('.island-item', {
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: 'back.out'
+          }, "-=0.5");
 
       }, appRef);
 
@@ -244,4 +259,51 @@ export function useGsapAnimations(appRef, isReady) {
 
     return () => clearTimeout(timer);
   }, [appRef, isReady]);
+
+  // Add this inside your useGsapAnimations.js ctx block:
+
+  // ==========================================
+  // 6. THE GRAND FINALE REVEAL
+  // ==========================================
+  gsap.to('.finale-section', {
+    opacity: 1,
+    y: 0,
+    duration: 1.5,
+    ease: 'power4.out',
+    scrollTrigger: {
+      trigger: '.finale-section',
+      start: 'top 80%', // Triggers when the top of the section hits 80% of screen height
+      toggleActions: 'play none none reverse'
+    }
+  });
+
+  // Animate the text inside the finale one by one
+  const finaleTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.finale-content',
+      start: 'top 70%',
+    }
+  });
+
+  finaleTl
+    .from('.finale-birthday-text span', {
+      scale: 0.5,
+      opacity: 0,
+      rotateX: -90,
+      stagger: 0.3,
+      duration: 1,
+      ease: 'back.out(1.7)'
+    })
+    .from('.finale-message', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8
+    }, "-=0.5")
+    .from('.finale-emoji-rain span', {
+      y: 50,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.5,
+      ease: 'elastic.out(1, 0.5)'
+    }, "-=0.3");
 }

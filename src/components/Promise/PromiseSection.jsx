@@ -3,32 +3,61 @@ import './PromiseSection.css';
 function PromiseSection() {
   return (
     <section className="promise-section">
-      <div className="promise-crown">👑</div>
-      <div className="floating-stars">
-        {[...Array(15)].map((_, i) => (
-          <span
-            key={i}
-            style={{ 
-              left: `${Math.random() * 100}%`, 
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.1}s`
-            }}
-          >
-            ⭐
-          </span>
-        ))}
+      {/* Dynamic Background Elements */}
+      <div className="dream-blobs">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
       </div>
-      
-      <div className="promise-content">
-        <div className="promise-inner">
-          <span className="promise-label">🌟 A Very Special Promise 🌟</span>
-          <h2>You are a STAR, and you'll always shine bright!</h2>
-          <p>
-            No matter how tall you grow or how far you go, you will always have
-            someone who believes in you, cheers for you, and loves you more than
-            words can say.
-          </p>
-          <div className="promise-heart" />
+
+      <div className="promise-container">
+        <div className="promise-layout">
+          
+          {/* Visual Side: Floating Magic Island */}
+          <div className="promise-visual">
+            <div className="floating-island">
+              <span className="island-item crown">👑</span>
+              <span className="island-item heart">💖</span>
+              <span className="island-item star-big">⭐</span>
+              <span className="island-item star-small">✨</span>
+              <div className="island-base"></div>
+            </div>
+            {/* Sparkles that orbit the island */}
+            <div className="sparkle-orbit">
+              <div className="orbiting-sparkle">✨</div>
+              <div className="orbiting-sparkle">🌸</div>
+              <div className="orbiting-sparkle">🌈</div>
+            </div>
+          </div>
+
+          {/* Text Side: The Dream Cloud */}
+          <div className="promise-text-card">
+            <div className="card-header">
+              <span className="magic-line"></span>
+              <span className="badge-text">PINKY PROMISE</span>
+              <span className="magic-line"></span>
+            </div>
+            
+            <h2 className="promise-title">
+              You're <span className="highlight">Extraordinary</span>, <br/>
+              Ate Girl!
+            </h2>
+            
+            <div className="promise-content">
+              <p>
+                No matter how many birthdays pass, our promise to you remains 
+                the same: to always believe in your dreams, to hold your hand 
+                through every adventure, and to love you more than all the 
+                stars in the galaxy. 
+              </p>
+            </div>
+
+            <div className="promise-footer">
+              <span className="footer-emoji">🦋</span>
+              <span className="footer-emoji">🦄</span>
+              <span className="footer-emoji">🍭</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

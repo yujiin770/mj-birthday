@@ -1,13 +1,16 @@
 .finale-section {
   position: relative;
+  min-height: 100vh; 
   background: linear-gradient(165deg, #FFE8E0 0%, #FFD9C4 50%, #FFECDC 100%);
-  padding: 80px 20px 100px;
+  padding: 150px 20px; 
   text-align: center;
   overflow: hidden;
-  border-top: 6px solid rgba(255, 107, 157, 0.5);
-  margin-top: 40px;
-  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.08);
+  border-top: 6px dashed rgba(255, 107, 157, 0.3); 
+  margin-top: 100px;
+  opacity: 0; 
+  transform: translateY(100px);
 }
+
 
 .finale-balloon-background {
   position: absolute;

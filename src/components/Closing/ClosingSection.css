@@ -1,69 +1,155 @@
 .closing-section {
-  padding: 100px 0;
-}
-
-.closing-card {
-  background: white;
-  border-radius: 50px;
+  padding: 150px 0;
+  background: linear-gradient(to bottom, #FFF9F2, #FFEBF2);
+  display: flex;
+  justify-content: center;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-.closing-header {
-  height: 8px;
-  background: linear-gradient(90deg, var(--accent-sunset), var(--accent-pink), var(--accent-purple), var(--accent-mint));
-}
-
-.closing-content {
-  padding: 60px 50px;
-  text-align: center;
-}
-
-.closing-tag {
-  font-size: 2rem;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-.closing-content h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-family: 'Baloo 2', cursive;
-  margin-bottom: 20px;
-}
-
-.closing-content p {
-  color: var(--text-soft);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  max-width: 550px;
-  margin: 0 auto;
-}
-
-.closing-signature {
-  margin-top: 40px;
+.letter-container {
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  padding: 40px;
 }
 
-.signature-dots {
-  width: 60px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent-sunset), transparent);
+/* Polaroid Styling */
+.polaroid-frame {
+  position: absolute;
+  left: 0;
+  top: -20px;
+  background: white;
+  padding: 15px 15px 40px 15px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  transform: rotate(-8deg);
+  z-index: 10;
+  border-radius: 4px;
+  transition: transform 0.4s ease;
 }
 
-.closing-signature p {
-  font-size: 1rem;
-  font-style: italic;
-  margin: 0;
+.polaroid-frame:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 20;
+}
+
+.polaroid-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+
+.polaroid-caption {
+  font-family: 'Fredoka One', cursive;
   color: var(--accent-pink);
-  font-weight: 600;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1.1rem;
 }
 
+/* Letter Styling */
+.letter-paper {
+  background: #fff;
+  background-image: 
+    linear-gradient(#f1f1f1 1px, transparent 1px);
+  background-size: 100% 2.5rem;
+  padding: 80px 60px 60px 100px;
+  width: 100%;
+  max-width: 700px;
+  min-height: 500px;
+  box-shadow: 10px 10px 0px rgba(255, 107, 157, 0.1);
+  border: 1px solid #eee;
+  position: relative;
+  z-index: 5;
+}
+
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 60px;
+  width: 2px;
+  background: rgba(255, 107, 157, 0.2);
+}
+
+.letter-stamp {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 60px;
+  height: 60px;
+  border: 3px dashed var(--accent-pink);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transform: rotate(15deg);
+  color: var(--accent-pink);
+}
+
+.letter-content p {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.2rem;
+  line-height: 2.5rem; /* Matches line grid */
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+.handwritten {
+  font-family: 'Baloo 2', cursive;
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+}
+
+.letter-signature {
+  margin-top: 50px;
+  text-align: right;
+}
+
+.signature-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 10px;
+}
+
+.final-confetti-btn-container {
+    position: absolute;
+    bottom: -80px;
+    text-align: center;
+}
+
+.footer-small {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    opacity: 0.6;
+}
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
-  .closing-content {
-    padding: 40px 30px;
+  .letter-container {
+    flex-direction: column;
+    padding-top: 250px;
+  }
+  
+  .polaroid-frame {
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+    top: 20px;
+  }
+  
+  .letter-paper {
+    padding: 60px 30px 40px 50px;
+  }
+  
+  .letter-paper::before {
+      left: 35px;
   }
 }
