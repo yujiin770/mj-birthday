@@ -9,6 +9,7 @@ import GallerySection from './components/Gallery/GallerySection';
 import MemoriesSection from './components/Memories/MemoriesSection';
 import PromiseSection from './components/Promise/PromiseSection';
 import ClosingSection from './components/Closing/ClosingSection';
+import FinaleSection from './components/FinaleSection/FinaleSection'; // Add this
 import SurpriseSection from './components/Surprise/SurpriseSection';
 import BirthdayPopup from './components/BirthdayPopup/BirthdayPopup';
 
@@ -48,6 +49,7 @@ function App() {
         <MemoriesSection />
         <PromiseSection />
         <ClosingSection onReachEnd={handleClosingReachEnd} />
+        <FinaleSection /> {/* Add this right here */}
       </main>
       <SurpriseSection videoSrc={surpriseVideo} />
       <BirthdayPopup isOpen={showBirthdayPopup} onClose={handleClosePopup} />

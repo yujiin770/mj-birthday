@@ -109,7 +109,7 @@ export function useGsapAnimations(appRef, isReady) {
           );
         });
 
-        
+
 
         // ==========================================
         // 4. OTHER SECTIONS SCROLL TRIGGERS
@@ -272,7 +272,7 @@ export function useGsapAnimations(appRef, isReady) {
     ease: 'power4.out',
     scrollTrigger: {
       trigger: '.finale-section',
-      start: 'top 80%', // Triggers when the top of the section hits 80% of screen height
+      start: 'top 90%', // Trigger slightly earlier on mobile
       toggleActions: 'play none none reverse'
     }
   });
