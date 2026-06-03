@@ -1,5 +1,5 @@
 import './HeroSection.css';
-import niecePic from '../../assets/images/niece.jpg'; 
+import niecePic from '../../assets/images/mj.jpg'; 
 
 function HeroSection() {
   return (

@@ -87,7 +87,7 @@ function FinaleSection() {
         <h1 className="finale-birthday-text">
           <span className="line-1">HAPPY</span>
           <span className="line-2">BIRTHDAY</span>
-          <span className="line-3">MJ!</span>
+          <span className="line-3">ATE GIRL!</span>
         </h1>
         
         <div className="finale-divider">

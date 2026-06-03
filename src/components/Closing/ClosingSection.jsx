@@ -40,7 +40,7 @@ function ClosingSection({ onReachEnd }) {
             <p>
               You're 9 years old now - that's a whole new chapter of fun, learning,
               and amazing adventures! Enjoy every single moment of your special day,
-              dear niece.
+              Ate Girl!!!.
             </p>
             <div className="closing-signature">
               <div className="signature-dots" />

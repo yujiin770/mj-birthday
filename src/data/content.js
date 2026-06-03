@@ -2,21 +2,21 @@
 // Make sure to put your images in src/assets/gallery/ folder
 import img1Front from '../assets/gallery/1-front.jpg';
 import img1Back from '../assets/gallery/1-back.png';
-import img2Front from '../assets/gallery/1-front.jpg';
+import img2Front from '../assets/gallery/2-front.jpg';
 import img2Back from '../assets/gallery/1-back.png';
-import img3Front from '../assets/gallery/1-front.jpg';
+import img3Front from '../assets/gallery/3-front.jpg';
 import img3Back from '../assets/gallery/1-back.png';
-import img4Front from '../assets/gallery/1-front.jpg';
+import img4Front from '../assets/gallery/4-front.jpg';
 import img4Back from '../assets/gallery/1-back.png';
-import img5Front from '../assets/gallery/1-front.jpg';
+import img5Front from '../assets/gallery/5-front.jpg';
 import img5Back from '../assets/gallery/1-back.png';
-import img6Front from '../assets/gallery/1-front.jpg';
+import img6Front from '../assets/gallery/6-front.jpg';
 import img6Back from '../assets/gallery/1-back.png';
-import img7Front from '../assets/gallery/1-front.jpg';
+import img7Front from '../assets/gallery/7-front.jpg';
 import img7Back from '../assets/gallery/1-back.png';
-import img8Front from '../assets/gallery/1-front.jpg';
+import img8Front from '../assets/gallery/8-front.jpg';
 import img8Back from '../assets/gallery/1-back.png';
-import img9Front from '../assets/gallery/1-front.jpg';
+import img9Front from '../assets/gallery/9-front.jpg';
 import img9Back from '../assets/gallery/1-back.png';
 
 export const wishCards = [
