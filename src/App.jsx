@@ -49,7 +49,7 @@ function App() {
         <MemoriesSection />
         <PromiseSection />
         <ClosingSection onReachEnd={handleClosingReachEnd} />
-        <FinaleSection /> {/* Add this right here */}
+      
       </main>
       <SurpriseSection videoSrc={surpriseVideo} />
       <BirthdayPopup isOpen={showBirthdayPopup} onClose={handleClosePopup} />
